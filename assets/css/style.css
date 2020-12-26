@@ -1,0 +1,42 @@
+#footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	clear: both;
+	height: 40px;
+	font-size: 16;
+	text-rendering: auto;
+	position: fixed;
+}
+
+.tableft {
+	float: left;
+	width: 40%;
+	height: 250px;
+	color: white;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.tabrigth {
+	float: right;
+	width: 35%;
+	height: 250px;
+	color: white;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.tabcenter {
+	float: right;
+	width: 25%;
+	height: 250px;
+	color: white;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+p {
+	margin-left: 40px;
+	margin-right: 80px;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVO</title>
+
+    <!-- link jquery mobile -->
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+
+    <!-- Link BOOTSTRAP -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- link font awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
+
+    <!-- link fonts -->
+
+
+</head>
+
+<body style="font-family: 'Times New Roman', Times, serif; background-color: rgb(0, 0, 0);">
+	<nav class="navbar" style="background-color: #683699;">
+		<div class="container-fluid">
+			<span class="navbar-brand mb-0 h1 text-white">OVO</span>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><i class="fa fa-bell text-white"></i></a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<img src="<?= base_url('assets/img/header.png') ?>" class="img-fluid" style="width:100%; height:250px;">
+
+	<div class="row">
+		<div class="top-left" style="position: absolute;top: 60px; left: 2px;">
+			<h4 class="text-white">OVO cash</h4>
+			<h4 class="text-white">Rp.</h4>
+			<h1 class="text-danger" style="padding-left:40px;">0</h1>
+			<h4 class="text-white">OVO Points 0</h4>
+		</div>
+			<div class="row">
+				<!-- button Top UP, Transfer, dan history -->
+				<div class="card-group mx-auto" style="margin-top: -50px; width:85%">
+					
+					<div class="col-4">
+						<div class="card text-center border-light">
+							<a href="#" class="nav-link">
+								<img src="https://img.icons8.com/material-sharp/96/000000/topup-payment.png" / class="card-img-center" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">Top up</h5>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card text-center border-light">
+							<a href="#" class="nav-link">
+								<img src="https://img.icons8.com/dusk/96/000000/money-transfer.png" / class="card-img-center" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">Transfer</h5>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="col-4">
+						<div class="card text-center border-light">
+							<a href="#" class="nav-link">
+								<img src="https://img.icons8.com/color/96/000000/activity-history.png" / class="card-img-center" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">History</h5>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		<!-- Button Nav -->
+		<div class="card-group mx-auto">
+			<div class="mt-5" style="background-color: white; margin-top: -100px;"></div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/dusk/96/000000/electricity.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">PLN</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/cute-clipart/96/000000/cell-phone.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Pulsa</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/cute-clipart/96/000000/controller.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Voucher Game</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/dusk/96/000000/water.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Air PDAM</h5>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="card-group mx-auto">
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/clouds/96/000000/shield.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">BPJS</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/clouds/96/000000/tv-show.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Internet & TV Kabel</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/fluent/96/000000/rainy-weather.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Proteksi</h5>
+					</div>
+				</a>
+			</div>
+			<div class="card text-center border-light">
+				<a href="#" class="nav-link">
+					<img src="https://img.icons8.com/officel/96/000000/more.png" class="card-img-center" alt="...">
+					<div class="card-body">
+						<h5 class="card-title">Lainnya</h5>
+					</div>
+				</a>
+			</div>
+		</div>
+		
+		<h1 class="mt-5"> Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		
+			Halo Halo Halo Halo Halo Halo Halo Halo Halo
+			Halo Halo Halo Halo Halo Halo
+		</h1>
+		</div>
+	</body>
+	</html>
+
+		
