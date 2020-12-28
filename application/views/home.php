@@ -1,74 +1,36 @@
-<div class="card-group mx-auto" style="margin-top: 200px;">
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/dusk/96/000000/electricity.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">PLN</h5>
+<div class="container" style="margin-top: 200px;">
+    <div class="row">
+
+        <?php
+
+        $queryMerchant = "SELECT * FROM merchant";
+        $menu = $this->db->query($queryMerchant)->result_array();
+        ?>
+
+        <?php foreach ($menu as $m) : ?>
+            <div class="col-3">
+                <div class="card text-center border-light">
+                    <a href="<?= base_url($m['url']) ?>" class="nav-link">
+                        <img src="<?= $m['gambar_merchant']; ?>" class="card-img-center" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $m['nama_merchant']; ?></h5>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/cute-clipart/96/000000/cell-phone.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Pulsa</h5>
-            </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/cute-clipart/96/000000/controller.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Voucher Game</h5>
-            </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/dusk/96/000000/water.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Air PDAM</h5>
-            </div>
-        </a>
+        <?php endforeach; ?>
     </div>
 </div>
-<div class="card-group mx-auto">
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/clouds/96/000000/shield.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">BPJS</h5>
-            </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/clouds/96/000000/tv-show.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Internet & TV Kabel</h5>
-            </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/fluent/96/000000/rainy-weather.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Proteksi</h5>
-            </div>
-        </a>
-    </div>
-    <div class="card text-center border-light">
-        <a href="#" class="nav-link">
-            <img src="https://img.icons8.com/officel/96/000000/more.png" class="card-img-center" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Lainnya</h5>
-            </div>
-        </a>
-    </div>
-</div>
+
 <hr style="height:2em;">
 </div>
 <div class="container-fluid">
+    <?php
+
+    $queryPromo = "SELECT * FROM promo ";
+    $menu = $this->db->query($queryPromo)->result_array();
+
+    ?>
     <h3>Info dan Promo special</h3>
     <a href="#" style="float: right;">Lihat semuanya</a>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -80,21 +42,12 @@
             <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="<?= base_url() ?>assets/img/promo1.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="<?= base_url() ?>assets/img/promo2.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="<?= base_url() ?>assets/img/promo3.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="<?= base_url() ?>assets/img/promo4.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="<?= base_url() ?>assets/img/promo5.jpg" class="d-block w-100" alt="...">
-            </div>
+            <?php foreach ($menu as $m) : ?>
+                <div class="carousel-item active">
+                    <img src="<?= base_url('assets/img/promo/') . $m['gambar_promo']; ?>" class="d-block w-100" alt="...">
+                    <a href="user/promo"></a>
+                </div>
+            <?php endforeach; ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

@@ -16,7 +16,7 @@
                 <div class="card text-center border-light">
 
                     <?php if ($this->session->userdata('jenis_ovo') === '1') ?>
-                    <a href="<?= base_url('transfer') ?>" class="nav-link tombol-transfer">
+                    <a href="<?= base_url('user/transfer') ?>" class="nav-link">
                         <img src="https://img.icons8.com/dusk/96/000000/money-transfer.png" / class="card-img-center" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Transfer</h5>
