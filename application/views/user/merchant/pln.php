@@ -13,6 +13,7 @@
 <br>
 
 <div class="container-fluid">
+    <?= $this->session->flashdata('pesan'); ?>
     <div class="container">
 
         <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
@@ -25,7 +26,9 @@
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <form action="<?= base_url('merchant') ?>" method="POST">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
-                    <input type="hidden" name="total" value="<?= $listrik["total"] ?>">
+                    <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
+                    <input type="hidden" name="no_referensi" value="<?= $total_tagihan["no_referensi"] ?>">
+                    <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
                     <input type="hidden" name="biaya">
                     <div class="container mt-4" style="background-color: white;">
                         <small class="text-muted">Nomor Meter</small>
@@ -78,53 +81,26 @@
             </div>
 
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <form action="<?= base_url('merchant') ?>" method="POST">
+                <form action="<?= base_url('merchant/pln_id') ?>" method="POST">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
-                    <input type="hidden" name="id_pengguna" value="PLN">
+                    <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
+                    <input type="hidden" name="no_referensi" value="<?= $total_tagihan["no_referensi"] ?>">
+                    <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
+                    <input type="hidden" name="biaya">
                     <div class="container mt-4" style="background-color: white;">
                         <small class="text-muted">ID Pelanggan</small>
                         <div class="input-group flex-nowrap">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="ID" placeholder="Contoh: 1234567890" aria-describedby="basic-addon3">
+                                <input type="text" class="form-control" name="id_pelanggan" placeholder="Contoh: 1234567890" aria-describedby="basic-addon3">
                             </div>
                         </div>
                     </div>
                     <br>
 
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="btn-group-vertical ">
-                                    <input type="radio" name="nominal" value="20000" class="btn-check form-control" id="btncheck9" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck9" style="width: 525px;">20000</label>
-
-                                    <input type="radio" name="nominal" value="100000" class="btn-check form-control" id="btncheck10" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck10" style="width: 525px;">100000</label>
-
-                                    <input type="radio" name="nominal" value="500000" class="btn-check form-control" id="btncheck11" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck11" style="width: 525px;">500000</label>
-
-                                    <input type="radio" name="nominal" value="5000000" class="btn-check form-control" id="btncheck12" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck12" style="width: 525px;">5000000</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="btn-group-vertical ">
-                                    <input type="radio" name="nominal" value="50000" class="btn-check form-control" id="btncheck13" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck13" style="width: 525px;">50000</label>
-
-                                    <input type="radio" name="nominal" value="200000" class="btn-check form-control" id="btncheck14" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck14" style="width: 525px;">200000</label>
-
-                                    <input type="radio" name="nominal" value="1000000" class="btn-check form-control" id="btncheck15" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck15" style="width: 525px;">1000000</label>
-
-                                    <input type="radio" name="nominal" value="10000000" class="btn-check form-control" id="btncheck16" autocomplete="off" style="width: 100%;">
-                                    <label class="btn btn-outline-success mb-4" for="btncheck16" style="width: 525px;">10000000</label>
-                                </div>
-                            </div>
-                        </div>
-
+                        <input type="text" name="nominal" placeholder="Masukkan Nominal" class="form-control" autocomplete="off" style="width: 100%;">
+                        <?= form_error('nominal', '<small class="text-danger text-center pl-3">', '</small>'); ?>
+                        <br>
                         <button type="submit" class="btn btn-success" style="width: 100%;">OK</button>
                     </div>
                 </form>
