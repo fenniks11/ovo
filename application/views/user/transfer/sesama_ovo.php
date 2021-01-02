@@ -6,7 +6,7 @@
                 <div class="col-11">
                     <textarea class="form-control" name="nomor_ponsel_penerima" placeholder="Masukkan Nomor Ponsel" rows="3"></textarea>
                 </div>
-                <div class="col">
+                <div class="col-1">
                     <i class="fa fa-address-book-o fa-5x" aria-hidden="true" style="width: 100%;"></i>
                 </div>
                 <?= form_error('nomor_ponsel_penerima', '<small class="text-danger pl-3">', '</small>'); ?>

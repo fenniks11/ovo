@@ -10,6 +10,11 @@ class Auth extends CI_Controller
     }
     public function index()
     {
+        // cek adakah session(login) berarti tidak boleh ke halaman login
+        if ($this->session->userdata('nohp')) {
+            redirect('user');
+        }
+
         $this->form_validation->set_rules('nohp', 'Nomor HP', 'required|trim|is_natural');
         $this->form_validation->set_rules('password', 'Password', 'required|trim|is_natural');
         if ($this->form_validation->run() == false) {
@@ -65,6 +70,11 @@ class Auth extends CI_Controller
 
     public function register()
     {
+        // cek adakah session(login) berarti tidak boleh ke halaman register
+        if ($this->session->userdata('nohp')) {
+            redirect('user');
+        }
+
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules(
             'email',

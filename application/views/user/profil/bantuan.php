@@ -1,24 +1,46 @@
-<h1>Halo ini halaman bantuan</h1>
+<?php
+// query mengambil data bantuan
 
-<div class="accordion" id="accordionExample">
-    <?php
+$queryBantuan = "SELECT jenis_bantuan, url_jenisbantuan, gambar_bantuan FROM bantuan ";
+$menu = $this->db->query($queryBantuan)->result_array();
 
-    $queryBantuan = "SELECT jenis_bantuan FROM bantuan ";
-    $menu = $this->db->query($queryBantuan)->result_array();
+?>
+<!-- Navbar -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="<?= base_url('bantuan') ?>"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i> </a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" style="margin-left: 20px;">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
 
-    ?>
-    <?php foreach ($menu as $m) : ?>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <?= $m['jenis_bantuan']; ?>
-                </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+<!-- content -->
+<div class="container-fluid mt-5">
+    <div class="container" style="width: 90%; background-color:white">
+        <!-- cari bantuan -->
+        <form action="bantuan">
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i class="fa fa-search"></i></button>
+                <input type="text" class="form-control" name="keyword" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+        </form>
+
+        <!-- jenis-jenis bantuan -->
+        <?php foreach ($menu as $m) : ?>
+            <div class="row">
+                <div class="col-1">
+                    <img src="<?= $m['gambar_bantuan']; ?>" alt="">
+                </div>
+                <div class="col-11">
+                    <a class="dropdown-item" href="<?= $m['url_jenisbantuan']; ?>"> <?= $m['jenis_bantuan']; ?></a>
                 </div>
             </div>
-        </div>
-    <?php endforeach; ?>
+            <hr class="dropdown-divider">
+        <?php endforeach; ?>
+    </div>
 </div>

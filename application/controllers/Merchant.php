@@ -30,6 +30,7 @@ class Merchant extends CI_Controller
         $data['total_bayar'] =
             $this->db->get('total_tagihan')->result_array();
 
+
         $this->form_validation->set_rules(
             'nominal',
             'Nominal',

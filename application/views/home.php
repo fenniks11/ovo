@@ -31,23 +31,62 @@
     $menu = $this->db->query($queryPromo)->result_array();
 
     ?>
-    <h3>Info dan Promo special</h3>
-    <a href="#" style="float: right;">Lihat semuanya</a>
+    <div class="row">
+        <div class="col">
+            <h3 class="text-start">Info dan Promo special</h3>
+        </div>
+        <div class="col ">
+            <a href="#" class="nav-link  text-info">
+                <h5 class="text-sm-end">Lihat semuanya</h5>
+            </a>
+        </div>
+    </div>
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
-            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></li>
+            <?php
+            $i = 0;
+            foreach ($menu as $m) {
+                if ($i == 0) {
+            ?>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $i; ?>" class="active"></li>
+                    <?php
+                    $i++;
+                } else {
+                    if ($i != 0) {
+
+                    ?>
+                        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<?php echo $i; ?>"></li>
+            <?php
+                    }
+                    $i++;
+                }
+            }
+            ?>
         </ol>
         <div class="carousel-inner">
-            <?php foreach ($menu as $m) : ?>
-                <div class="carousel-item active">
-                    <img src="<?= base_url('assets/img/promo/') . $m['gambar_promo']; ?>" class="d-block w-100" alt="...">
-                    <a href="user/promo"></a>
-                </div>
-            <?php endforeach; ?>
+            <?php
+            $i = 0;
+            foreach ($menu as $m) {
+                if ($i == 0) {
+            ?>
+                    <div class="carousel-item active">
+                        <a href="<?= base_url('promo') ?>"><img src="<?= base_url('assets/img/promo/') . $m['gambar_promo']; ?>" class="d-block w-100" alt="..."></a>
+                    </div>
+                    <?php
+                    $i++;
+                } else {
+                    if ($i != 0) {
+                    ?>
+                        <div class="carousel-item">
+
+                            <a href="<?= base_url('promo') ?>"><img src="<?= base_url('assets/img/promo/') . $m['gambar_promo']; ?>" class="d-block w-100" alt="..."></a>
+                        </div>
+            <?php
+                    }
+                    $i++;
+                }
+            }
+            ?>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
