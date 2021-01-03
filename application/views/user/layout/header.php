@@ -3,7 +3,7 @@
         <?= $this->session->flashdata('pesan'); ?>
         <span class="navbar-brand mb-0 h1 text-white">OVO</span>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fa fa-bell text-white"></i></a></li>
+            <li><a href="<?= base_url('notif') ?>"><i class="fa fa-bell text-white"></i></a></li>
         </ul>
     </div>
 </nav>

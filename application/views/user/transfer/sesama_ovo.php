@@ -19,7 +19,7 @@
                 <div class="col-11">
                     <h3 class="card-title" style="margin-left: 40px;">OVO CASH</h3>
                     <p class="text-muted">Saldo</p>
-                    <p class="card-text">Rp. <?= $user['jumlah_saldo']; ?></p>
+                    <p class="card-text">Rp. <?php echo number_format($user['jumlah_saldo'], 0, ',', '.') ?></p>
                 </div>
             </div>
             <br>

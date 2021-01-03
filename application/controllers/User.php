@@ -229,8 +229,7 @@ class User extends CI_Controller
                     ->from('saldo')
                     ->join('transfer', 'transfer.id_pengguna=profil.id_pengguna')
                     ->get_where('profil', ['nomor_ponsel' => $this->session->userdata('nohp')], ['id_pengguna' => $this->session->userdata('id_pengguna')])->row_array();
-                // print_r($data_hasil["saldo_kurang"]["saldo_kurang"]);
-                // exit;
+
                 if ($data_hasil["saldo_kurang"]["saldo_kurang"]) {
                     // Kalau saldo kurang
                     $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">

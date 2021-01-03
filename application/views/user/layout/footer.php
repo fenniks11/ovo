@@ -5,13 +5,13 @@
                 <a class="nav-link active" aria-current="page" href="#"> <i class="fa fa-home" aria-hidden="true"></i> Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"> <i class="fa fa-tag" aria-hidden="true"></i> Deals</a>
+                <a class="nav-link" href="<?= base_url('deals') ?>"> <i class="fa fa-tag" aria-hidden="true"></i> Deals</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href=""><i class="fa fa-fw fa-qrcode" aria-hidden="true"></i> Scan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa fa-money"></i> Finance</a>
+                <a class="nav-link" href="<?= base_url('finance') ?>"><i class="fa fa-money"></i> Finance</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('user/profil') ?>"> <i class="fa fa-user-o"></i> Profil</a>

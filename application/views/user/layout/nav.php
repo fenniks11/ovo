@@ -27,7 +27,7 @@
 
             <div class="col-4">
                 <div class="card text-center border-light">
-                    <a href="#" class="nav-link">
+                    <a href="<?= base_url('history') ?>" class="nav-link">
                         <img src="https://img.icons8.com/color/96/000000/activity-history.png" / class="card-img-center" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">History</h5>

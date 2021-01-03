@@ -1,0 +1,1 @@
+<h1 class="text-center">Kami sedang mempersiapkan sesuatu untuk kamu</h1>
