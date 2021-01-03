@@ -13,6 +13,7 @@ class User extends CI_Controller
     }
     public function index()
     {
+
         $data['title'] = 'Home';
         $data['isi'] = 'home';
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');

@@ -15,7 +15,6 @@
 <div class="container-fluid">
     <?= $this->session->flashdata('pesan'); ?>
     <div class="container">
-
         <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
 
             <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"> Token Listrik</a>
@@ -26,10 +25,9 @@
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <form action="<?= base_url('merchant/pln') ?>" method="post">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
+                    <input type="hidden" name="no_referensi" value="<?= $nomor_referensi; ?>">
                     <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
-                    <input type="hidden" name="no_referensi" value="<?= $total_tagihan["no_referensi"] ?>">
                     <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
-                    <input type="hidden" name="biaya">
                     <div class="container mt-4" style="background-color: white;">
                         <small class="text-muted">Nomor Meter</small>
                         <div class="input-group flex-nowrap">
@@ -79,32 +77,5 @@
                     </div>
                 </form>
             </div>
-
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <form action="<?= base_url('merchant/pln_id') ?>" method="POST">
-                    <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
-                    <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
-                    <input type="hidden" name="no_referensi" value="<?= $no_referensi; ?>">
-                    <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
-                    <input type="hidden" name="biaya">
-                    <div class="container mt-4" style="background-color: white;">
-                        <small class="text-muted">ID Pelanggan</small>
-                        <div class="input-group flex-nowrap">
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="id_pelanggan" placeholder="Contoh: 1234567890" aria-describedby="basic-addon3">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="container">
-                        <input type="text" name="nominal" placeholder="Masukkan Nominal" class="form-control" autocomplete="off" style="width: 100%;">
-                        <?= form_error('nominal', '<small class="text-danger text-center pl-3">', '</small>'); ?>
-                        <br>
-                        <button type="submit" class="btn btn-success" style="width: 100%;">OK</button>
-                    </div>
-                </form>
-            </div>
         </div>
     </div>
-</div>

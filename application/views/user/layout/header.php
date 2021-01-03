@@ -14,6 +14,6 @@
     <div class="top-left" style="position: absolute;top: 60px; left: 2px;">
         <h4 class="text-white">OVO cash</h4>
         <h4 class="text-white">Rp.</h4>
-        <h1 class="text-danger" style="padding-left:40px;"><?= $user['jumlah_saldo']; ?></h1>
+        <h1 class="text-white" style="padding-left:40px;"><?php echo number_format($user['jumlah_saldo'], 0, ',', '.') ?></h1>
         <h4 class="text-white">OVO Points 0</h4>
     </div>

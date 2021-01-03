@@ -12,14 +12,6 @@ class Merchant extends CI_Controller
 
     public function pln()
     {
-        $data['title'] = 'PLN';
-        $this->load->view('user/merchant/headerMerchant', $data, FALSE);
-        $this->load->view('user/merchant/pln', $data, FALSE);
-        $this->load->view('user/merchant/footerMerchant', $data, FALSE);
-    }
-
-    public function pln_id()
-    {
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] =
@@ -48,21 +40,17 @@ class Merchant extends CI_Controller
                 'required' => 'Nominal harus dipilih'
             ]
         );
-
         $this->form_validation->set_rules(
-            'id_pelanggan',
-            'ID Pelanggan',
+            'nomor_meter',
+            'Nomor Meter',
             'required|trim',
             [
-                'required' => 'ID Pelanggan tidak boleh kosong harus diisi lebih dulu'
+                'required' => 'Nomor Meter harus diisi lebih dulu'
             ]
         );
-
         if ($this->form_validation->run() == false) {
-            $data = array(
-                'title' => 'pln id',
-                'no_referensi' => $this->nota_m->invoice_no(),
-            );
+            $data['title'] = 'PLN';
+            $data['nomor_referensi'] = $this->nota_m->invoice_no();
             $this->load->view('user/merchant/headerMerchant', $data, FALSE);
             $this->load->view('user/merchant/pln', $data, FALSE);
             $this->load->view('user/merchant/footerMerchant', $data, FALSE);
@@ -75,13 +63,13 @@ class Merchant extends CI_Controller
             $this->db->insert('jenis_transaksi', $data_transaksi);
 
             $data_listrik = [
-
-                'nama_merchant' => 'PLN',
+                'no_referensi' => $this->input->post('no_referensi'),
+                'id_jenis_transaksi' => $this->input->post('id_jenis_transaksi'),
+                'id_merchant' => 2,
                 'nominal' => $this->input->post('nominal'),
                 'id_pengguna' => $this->input->post("id_pengguna"),
                 'biaya' => 2000,
                 'status_transaksi' => 'berhasil',
-                'id_jenis_transaksi' => $this->input->post('id_jenis_transaksi')
             ];
 
             $this->db->insert('nota', $data_listrik);
@@ -100,9 +88,9 @@ class Merchant extends CI_Controller
             $this->db->update("saldo");
 
             $this->session->set_flashdata('pesan', '<div class="alert alert-warning" role="alert">
-                Transaksi Berhasil </div>');
+                    Transaksi Berhasil </div>');
 
-            redirect('user');
+            redirect('merchant/pln');
         }
     }
 
