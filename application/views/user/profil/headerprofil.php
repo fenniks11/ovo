@@ -21,6 +21,9 @@
     <!-- link font awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    <!-- script js -->
+    <script src="<?= base_url() ?>assets/js/jquery-3.5.1.min.js"></script>
+
     <!-- link css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css">
 

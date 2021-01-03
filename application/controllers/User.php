@@ -182,7 +182,7 @@ class User extends CI_Controller
             $this->load->view('user/profil/footerprofil', $data);
         } else {
 
-            redirect('user/upgrade_ovo');
+            redirect('tanya_user');
         }
     }
     public function sesama_ovo()
@@ -329,16 +329,37 @@ class User extends CI_Controller
 
     public function upgrade_ovo()
     {
-        $data = array(
-            'title' => 'Upgrade OVO',
-        );
-        $data['user'] =
-            $this->db->get_where('profil', ['nomor_ponsel' =>
-            $this->session->userdata('nohp')])->row_array();
+        $this->form_validation->set_rules('NIK', 'Nomor Induk Keluarga', 'required|is_unique[profil_premium.NIK]', array('required' => '%s Harus Diisi!', 'is_unique' => '%s Sudah pernah terdaftar'));
+        if ($this->form_validation->run() == false) {
+            $data = array(
+                'title' => 'Upgrade OVO',
+            );
+            $data['user'] =
+                $this->db->get_where('profil', ['nomor_ponsel' =>
+                $this->session->userdata('nohp')], ['id_pengguna' => $this->session->userdata('id_pengguna')])->row_array();
+            $this->load->view('user/profil/headerprofil', $data);
+            $this->load->view('user/profil/upgrade_ovo', $data, FALSE);
+            $this->load->view('user/profil/footerprofil', $data);
+        } else {
+            $data = array(
+                'NIK' => $this->input->post('NIK'),
+                'id_pengguna' => $this->input->post('id_pengguna'),
 
+                // 'foto_ktp' =>  $upload_data['uploads']['file_name']
+            );
 
-        $this->load->view('user/profil/headerprofil', $data);
-        $this->load->view('user/profil/upgrade_ovo', $data, FALSE);
-        $this->load->view('user/profil/footerprofil', $data);
+            $this->db->insert('profil_premium', $data);
+
+            $data = array(
+                'jenis_ovo' => 1
+            );
+
+            $this->db->set('jenis_ovo', $data['jenis_ovo']);
+            $this->db->where('id_pengguna', $data['id_pengguna']);
+            $this->db->update('profil');
+
+            $this->session->set_flashdata('pesan', 'Berhasil upgrade ke OVO Premier.');
+            redirect('user');
+        }
     }
 }

@@ -24,7 +24,7 @@
 
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <form action="<?= base_url('merchant') ?>" method="POST">
+                <form action="<?= base_url('merchant/pln') ?>" method="post">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
                     <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
                     <input type="hidden" name="no_referensi" value="<?= $total_tagihan["no_referensi"] ?>">
@@ -84,7 +84,7 @@
                 <form action="<?= base_url('merchant/pln_id') ?>" method="POST">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
                     <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
-                    <input type="hidden" name="no_referensi" value="<?= $total_tagihan["no_referensi"] ?>">
+                    <input type="hidden" name="no_referensi" value="<?= $no_referensi; ?>">
                     <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
                     <input type="hidden" name="biaya">
                     <div class="container mt-4" style="background-color: white;">
