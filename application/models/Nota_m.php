@@ -4,9 +4,9 @@ class Nota_m extends CI_Model
 {
     public function invoice_no()
     {
-        $sql = "SELECT MAX(MID(no_referensi, 9,4)) AS invoice_no
+        $sql = "SELECT MAX(MID(no_referensi, 10,4)) AS invoice_no
                 FROM nota 
-                WHERE MID(no_referensi, 3, 6) = DATE_FORMAT(CURDATE(),'%y%m%d')";
+                WHERE MID(no_referensi, 4, 6) = DATE_FORMAT(CURDATE(),'%y%m%d')";
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $row = $query->row();

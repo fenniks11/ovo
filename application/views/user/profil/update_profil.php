@@ -17,46 +17,46 @@
     </div>
     <!-- Ubah Profil -->
     <div class="container">
-        <form action="<?= base_url('user/update_profil') ?>" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-2">
-                    <img src="<?= base_url('assets/img/profil/') . $user['img']; ?>" alt="" style="border-radius: 50%; width:100%">
+        <?= form_open_multipart('user/update_profil') ?>
+        <div class="row">
+            <div class="col-2">
+                <img src="<?= base_url('assets/img/profil/') . $user['img']; ?>" alt="" style="border-radius: 50%; width:100%">
+            </div>
+            <div class="col-10 mt-5">
+                <h2 class="text-info">Perbarui Foto Profil</h2>
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="img" name="img">
                 </div>
-                <div class="col-10 mt-5">
-                    <h2 class="text-info">Perbarui Foto Profil</h2>
-                    <div class="mb-3">
-                        <input class="form-control" type="file" id="img" name="img">
-                    </div>
-                </div>
-            </div><br><br>
-            <legend>
-                <h5 class="text-muted">
-                    Nama Lengkap
-                </h5>
-            </legend>
-            <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="nama" value="<?= $user['nama_lengkap']; ?>">
-            <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
-            <br>
-            <hr class="dropdown-divider"><br><br>
-            <legend>
-                <h5 class="text-muted">
-                    Nomor Ponsel
-                </h5>
-            </legend>
-            <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="nohp" value="<?= $user['nomor_ponsel']; ?>">
-            <?= form_error('nohp', '<small class="text-danger pl-3">', '</small>'); ?>
-            <br><br>
-            <legend>
-                <h5 class="text-muted">
-                    Email
-                </h5>
-            </legend>
-            <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="email" value="<?= $user['email']; ?>">
-            <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
-            <br><br>
-            <button class="btn btn-info text-white" type="submit" style="width: 100%;">
-                Ubah Profil
-            </button>
+            </div>
+        </div><br><br>
+        <legend>
+            <h5 class="text-muted">
+                Nama Lengkap
+            </h5>
+        </legend>
+        <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="nama" value="<?= $user['nama_lengkap']; ?>">
+        <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+        <br>
+        <hr class="dropdown-divider"><br><br>
+        <legend>
+            <h5 class="text-muted">
+                Nomor Ponsel
+            </h5>
+        </legend>
+        <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="nohp" value="<?= $user['nomor_ponsel']; ?>">
+        <?= form_error('nohp', '<small class="text-danger pl-3">', '</small>'); ?>
+        <br><br>
+        <legend>
+            <h5 class="text-muted">
+                Email
+            </h5>
+        </legend>
+        <input class="form-control form-control-lg" type="text" placeholder="Default input" aria-label="default input example" name="email" value="<?= $user['email']; ?>">
+        <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
+        <br><br>
+        <button class="btn btn-info text-white" type="submit" style="width: 100%;">
+            Ubah Profil
+        </button>
         </form>
     </div>
     <br>

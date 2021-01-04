@@ -26,8 +26,7 @@
                 <form action="<?= base_url('merchant/pln') ?>" method="post">
                     <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
                     <input type="hidden" name="no_referensi" value="<?= $nomor_referensi; ?>">
-                    <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
-                    <input type="hidden" name="total" value="<?= $total_bayar[0]["total"] ?>">
+                    <input type="hidden" name="waktu_transaksi" value="<?= $total_tagihan['waktu_transaksi'] ?>">
                     <div class="container mt-4" style="background-color: white;">
                         <small class="text-muted">Nomor Meter</small>
                         <div class="input-group flex-nowrap">
