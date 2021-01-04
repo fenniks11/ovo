@@ -1,12 +1,12 @@
 <?php
-$data['user'] = $this->db->get('profil')->result();
-?>
 
+$id_user = $this->session->userdata('nohp');
 
-<?php
-// query mengambil data bantuan
-
-$queryHistory = "SELECT distinct waktu_transaksi, id_jenis_transaksi FROM history";
+$queryHistory = "SELECT distinct history.waktu_transaksi, nota.nominal, jenis_transaksi.nama_transaksi, nota.status_transaksi, history.id_pengguna 
+                FROM history join jenis_transaksi on jenis_transaksi.id_jenis_transaksi = history.id_jenis_transaksi 
+                join nota on nota.no_referensi = history.no_referensi 
+                join profil on profil.id_pengguna = history.id_pengguna
+                where profil.nomor_ponsel = $id_user";
 $menu = $this->db->query($queryHistory)->result_array();
 
 ?>
@@ -36,18 +36,12 @@ $menu = $this->db->query($queryHistory)->result_array();
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"><?= $m['id_jenis_transaksi']; ?></th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col"><?= $m['nama_transaksi']; ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th scope="row"><?= $m['nama_transaksi']; ?> sebesar <?= $m['nominal']; ?> sudah <?= $m['status_transaksi']; ?></th>
                             </tr>
 
                         </tbody>

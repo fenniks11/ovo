@@ -95,6 +95,9 @@ class Merchant extends CI_Controller
                     'nama_transaksi' => 'Pembayaran listrik PLN'
                 ];
                 //Insert ke table jenis_transaksi 
+
+                $this->db->trans_begin();
+
                 $this->db->insert('jenis_transaksi', $data_transaksi);
                 $id_jenis_transaksi = $this->db->insert_id();
 
@@ -126,14 +129,23 @@ class Merchant extends CI_Controller
                     'id_pengguna' => $this->input->post('id_pengguna'),
                     'nominal' => $data['total'],
                     'waktu_transaksi' => $this->input->post('waktu_transaksi'),
+                    'no_referensi' => $this->input->post('no_referensi'),
                     'id_jenis_transaksi' => $id_jenis_transaksi
                 ];
                 $this->db->insert('history', $data_history);
 
-                $this->session->set_flashdata('pesan', '<div class="alert alert-warning" role="alert">
+                if ($this->db->trans_status() === false) {
+
+                    $this->db->trans_rollback();
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">
+                    Transaksi Berhasil </div>');
+                    redirect('merchant/pln');
+                } else {
+                    $this->session->set_flashdata('pesan', '<div class="alert alert-warning" role="alert">
                         Transaksi Berhasil </div>');
 
-                redirect('merchant/pln');
+                    redirect('merchant/pln');
+                }
             }
         }
     }
