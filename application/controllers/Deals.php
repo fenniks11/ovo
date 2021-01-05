@@ -146,6 +146,17 @@ class Deals extends CI_Controller
                     Transfer gagal, saldo kamu tidak cukup. Silahkan top up lebih dulu. </div>');
             redirect('user');
         } else {
+
+            // BEGIN TRANSACTION; 
+            // insert into trash_voucher values ('', '1', '20', '05-01-2020', '31-01-2020');
+            // UPDATE saldo SET jumlah_saldo = jumlah_saldo - voucher.harga, point = point + voucher.point;
+            // WHERE id_pengguna = 1
+            // if (tran_status === false){
+            // ROLLBACK;
+            // }else{
+            //     COMMIT
+            // }
+
             $this->db->trans_begin();
             $this->db->insert('trash_voucher', $data_voucher);
             $this->db->set("jumlah_saldo", "jumlah_saldo - $harga", FALSE);

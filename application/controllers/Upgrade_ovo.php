@@ -43,6 +43,8 @@ class Upgrade_ovo extends CI_Controller
                 $data = [
                     "jenis_ovo" => 1
                 ];
+
+                // UPDATE profil set jenis_ovo = 1 where nomor_ponsel = 083192164289 
                 $this->db->set('jenis_ovo', $data["jenis_ovo"]);
                 $this->db->where('nomor_ponsel', $this->session->userdata('nohp'));
                 $this->db->update('profil');
@@ -52,6 +54,7 @@ class Upgrade_ovo extends CI_Controller
             }
         }
         $data['user'] =
+            // select * from profil where nomor_ponsel = 083192164289
             $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')], ['id_pengguna' => $this->session->userdata('id_pengguna')])->row_array();
         $this->load->view('user/profil/headerprofil', $data);

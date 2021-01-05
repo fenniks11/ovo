@@ -13,6 +13,7 @@ class Tanya_user extends CI_Controller
         $data = array(
             'title' => 'Upgrade OVO',
         );
+        // select * from profil where nomor_ponsel = 083192164289
         $data['user'] =
             $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')])->row_array();

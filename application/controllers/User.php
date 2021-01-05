@@ -117,6 +117,7 @@ class User extends CI_Controller
                 }
             }
 
+            // UPDATE PROFIL SET nama_lengkap = 'Fenni Kristiani', email = 'fenni@gmail.com', nomor_ponsel = '083192164289';
             $this->db->set('nama_lengkap', $dataprofil['nama_lengkap']);
             $this->db->set('email', $dataprofil['email']);
             $this->db->where('nomor_ponsel', $dataprofil['nomor_ponsel']);
@@ -125,13 +126,6 @@ class User extends CI_Controller
             $this->session->set_flashdata('pesan', '<div class="alert alert-info" role="alert">
             Akun berhasil diperbaharui</div>');
             redirect('user/update_profil');
-            // 'email' => htmlspecialchars($this->input->post('email', true)),
-            // 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            // 'img' => 'default.jpg',
-            // 'jenis_ovo' => 2,
-            // 'is_active' => 1,
-            // 'date_created' => time()
-
         }
     }
 
@@ -179,6 +173,7 @@ class User extends CI_Controller
 
             $this->db->insert('notifikasi', $notif);
 
+            //UPDATE saldo SET jumlah_saldo = jumlah_saldo + '10000' WHERE id_pengguna = '1'
             $this->db->set("jumlah_saldo", "jumlah_saldo + $data_topup[nominal_top_up]", FALSE);
             $this->db->where("id_pengguna", $data_topup["id_pengguna"]);
             $this->db->update("saldo");
@@ -268,7 +263,6 @@ class User extends CI_Controller
                     $this->db->insert('transfer', $data_transfer);
                     $id_transfer = $this->db->insert_id();
 
-
                     $notif = [
                         'isi_pesan' => $this->input->post('pesan'),
                         'id_pengguna' => $this->input->post('id_pengguna'),
@@ -279,14 +273,15 @@ class User extends CI_Controller
                     $this->db->insert('notifikasi', $notif);
 
                     // UPDATE saldo set jumlah_saldo = jumlah_saldo - transfer.nominal 
-                    // where profil.id_pengguna = id pengguna yang login
+                    // where profil.id_pengguna = id pengguna yang melakukan transfer
                     $data['user'] =
                         $this->db->set("jumlah_saldo", "jumlah_saldo - $data_transfer[nominal]", FALSE);
                     $this->db->get_where('profil', ['id_pengguna' =>
                     $this->session->userdata('id_pengguna')])->row_array();
                     $this->db->update("saldo");
 
-
+                    // UPDATE saldo set jumlah_saldo = jumlah_saldo + transfer.nominal 
+                    // where profil.id_pengguna = id pengguna yang menerima transfer
                     $this->db->set("jumlah_saldo", "jumlah_saldo + $data_transfer[nominal]", FALSE);
                     $this->db->where("id_pengguna");
                     $this->db->update("saldo");
