@@ -29,6 +29,11 @@
                 <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
                 <input type="text" class="form-control" name="nominal" value="<?= set_value('nominal_top_up') ?>">
             </div>
+            <br>
+            <div class="input-group mb-3 input-group-lg" style="height: 100px;">
+                <label class="input-group-text">Pesan</label>
+                <input type="text" class="form-control" name="pesan">
+            </div>
             <?= form_error('nominal', '<small class="text-danger pl-3">', '</small>'); ?>
             <br>
             <button type="submit" class="btn btn-primary" style="width: 25%;">Transfer</button>

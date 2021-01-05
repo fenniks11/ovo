@@ -101,7 +101,7 @@ class User extends CI_Controller
                 $config['max_size'] = '8192';
                 $config['upload_path'] = './assets/img/profil/';
 
-                $this->load->library('upload', '$config');
+                $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('img')) {
                     $new_image = $this->upload->data('file_name');
@@ -158,6 +158,16 @@ class User extends CI_Controller
                 'id_pengguna' => $this->input->post("id_pengguna")
             ];
             $this->db->insert('top_up', $data_topup);
+            $id_top_up = $this->db->insert_id();
+
+
+            $notif = [
+                'id_pengguna' => $this->input->post('id_pengguna'),
+                'id_top_up' => $id_top_up,
+                'isi_notifikasi' => 'Top Up'
+            ];
+
+            $this->db->insert('notifikasi', $notif);
 
             $this->db->set("jumlah_saldo", "jumlah_saldo + $data_topup[nominal_top_up]", FALSE);
             $this->db->where("id_pengguna", $data_topup["id_pengguna"]);
@@ -221,6 +231,7 @@ class User extends CI_Controller
                 $data_transfer = [
                     'nominal' => $this->input->post('nominal'),
                     'nomor_ponsel_penerima' => $this->input->post('nomor_ponsel_penerima'),
+                    'pesan' => $this->input->post('pesan'),
                     'id_pengguna' => $this->input->post('id_pengguna')
                 ];
 
@@ -238,6 +249,17 @@ class User extends CI_Controller
                 } else {
                     // kalau saldo mencukupi
                     $this->db->insert('transfer', $data_transfer);
+                    $id_transfer = $this->db->insert_id();
+
+
+                    $notif = [
+                        'isi_pesan' => $this->input->post('pesan'),
+                        'id_pengguna' => $this->input->post('id_pengguna'),
+                        'id_transfer' => $id_transfer,
+                        'isi_notifikasi' => 'Transfer'
+                    ];
+
+                    $this->db->insert('notifikasi', $notif);
 
                     $data['user'] =
                         $this->db->set("jumlah_saldo", "jumlah_saldo - $data_transfer[nominal]", FALSE);
@@ -323,42 +345,6 @@ class User extends CI_Controller
             }
         } else {
 
-            redirect('user');
-        }
-    }
-
-    public function upgrade_ovo()
-    {
-        $this->form_validation->set_rules('NIK', 'Nomor Induk Keluarga', 'required|is_unique[profil_premium.NIK]', array('required' => '%s Harus Diisi!', 'is_unique' => '%s Sudah pernah terdaftar'));
-        if ($this->form_validation->run() == false) {
-            $data = array(
-                'title' => 'Upgrade OVO',
-            );
-            $data['user'] =
-                $this->db->get_where('profil', ['nomor_ponsel' =>
-                $this->session->userdata('nohp')], ['id_pengguna' => $this->session->userdata('id_pengguna')])->row_array();
-            $this->load->view('user/profil/headerprofil', $data);
-            $this->load->view('user/profil/upgrade_ovo', $data, FALSE);
-            $this->load->view('user/profil/footerprofil', $data);
-        } else {
-            $data = array(
-                'NIK' => $this->input->post('NIK'),
-                'id_pengguna' => $this->input->post('id_pengguna'),
-
-                // 'foto_ktp' =>  $upload_data['uploads']['file_name']
-            );
-
-            $this->db->insert('profil_premium', $data);
-
-            $data = array(
-                'jenis_ovo' => 1
-            );
-
-            $this->db->set('jenis_ovo', $data['jenis_ovo']);
-            $this->db->where('id_pengguna', $data['id_pengguna']);
-            $this->db->update('profil');
-
-            $this->session->set_flashdata('pesan', 'Berhasil upgrade ke OVO Premier.');
             redirect('user');
         }
     }

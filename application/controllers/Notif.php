@@ -18,4 +18,21 @@ class Notif extends CI_Controller
         $this->load->view('notif', $data, FALSE);
         $this->load->view('user/profil/footerprofil', $data);
     }
+
+    public function delete($id_notifikasi)
+    {
+        $data = array(
+            'id_notifikasi' => $id_notifikasi
+        );
+
+        $this->db->where('id_notifikasi', $data['id_notifikasi']);
+        $this->db->delete('notifikasi', $data);
+
+        $this->session->set_flashdata('pesan', 'Data Berhasil dihapus.');
+        redirect('notif');
+
+        $this->load->view('user/profil/headerprofil', $data);
+        $this->load->view('notif', $data, FALSE);
+        $this->load->view('user/profil/footerprofil', $data);
+    }
 }

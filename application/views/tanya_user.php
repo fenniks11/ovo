@@ -8,7 +8,7 @@
                 <p class="card-text text-center">Apakah anda yakin untuk update ke OVO Premier? Kami membutuhkan informasi penting seperti NIK, KTP, dan identitas anda lainnya. </p>
                 <div class="row">
                     <div class="col-lg-6">
-                        <a href="<?= base_url('user/upgrade_ovo') ?>" class="btn btn-primary" style="width: 100%;">Ya, saya yakin</a>
+                        <a href="<?= base_url('upgrade_ovo') ?>" class="btn btn-primary" style="width: 100%;">Ya, saya yakin</a>
                     </div>
                     <div class="col-lg-6">
                         <a href="<?= base_url('user') ?>" class="btn btn-secondary" style="width: 100%;">Batal</a>

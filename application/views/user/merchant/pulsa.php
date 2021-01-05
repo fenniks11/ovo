@@ -1,5 +1,3 @@
-<?= $total_bayar["total"] ?>
-
 <nav class="navbar navbar-light bg-light">
     <?= $this->session->flashdata('pesan'); ?>
     <div class="container-fluid">
@@ -19,8 +17,6 @@
     <form action="<?= base_url('merchant/pulsa') ?>" method="post">
         <input type="hidden" name="id_pengguna" value="<?= $user["id_pengguna"] ?>">
         <input type="hidden" name="no_referensi" value="<?= $nomor_referensi; ?>">
-        <input type="hidden" name="id_jenis_transaksi" value="<?= $jenis_transaksi[0]["id_jenis_transaksi"] ?>">
-        <input type="hidden" name="total" value="<?= $total_bayar["total"] ?>">
         <input type="hidden" name="waktu_transaksi" value="<?= $total_tagihan['waktu_transaksi'] ?>">
         <div class="mb-3 mx-5">
             <label for="exampleFormControlTextarea1" class="form-label text-muted">Nomor Ponsel</label>

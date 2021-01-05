@@ -1,6 +1,6 @@
 <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
-        <ul class="nav nav-justified">
+        <ul class="nav nav-justified sticky-top">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#"> <i class="fa fa-home" aria-hidden="true"></i> Home</a>
             </li>
