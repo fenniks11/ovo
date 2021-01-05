@@ -25,6 +25,7 @@ class Notif extends CI_Controller
             'id_notifikasi' => $id_notifikasi
         );
 
+        // DELETE FROM notifikasi WHERE ID = 1
         $this->db->where('id_notifikasi', $data['id_notifikasi']);
         $this->db->delete('notifikasi', $data);
 

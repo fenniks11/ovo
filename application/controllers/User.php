@@ -16,15 +16,15 @@ class User extends CI_Controller
 
         $data['title'] = 'Home';
         $data['isi'] = 'home';
+
+        // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+        // join jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo where nomor_ponsel = 083192164289
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] =
             $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')])->row_array();
-        // $data = array(
-        //     'title' => 'Home',
-        //     'isi' => 'home'
-        // );
+
         $this->load->view('user/layout/wrapper', $data, FALSE);
     }
 
@@ -52,6 +52,9 @@ class User extends CI_Controller
     public function profil()
     {
         $data['title'] = 'Profil';
+
+        // SELECT * FROM profil JOIN jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo
+        // where nomor_ponsel = 083192164289
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] = $this->db->get_where('profil', ['nomor_ponsel' =>
         $this->session->userdata('nohp')])->row_array();
@@ -77,6 +80,9 @@ class User extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Edit Profil';
+
+            // SELECT * FROM profil JOIN jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo
+            // where nomor_ponsel = 083192164289
             $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
             $data['user'] = $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')])->row_array();
@@ -144,6 +150,10 @@ class User extends CI_Controller
             $data = array(
                 'title' => 'topup',
             );
+
+            // SELECT * FROM profil JOIN jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo
+            // join saldo on saldo.id_pengguna = profil.id_pengguna
+            // where nomor_ponsel = 083192164289
             $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
             $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
             $data['user'] =
@@ -184,6 +194,8 @@ class User extends CI_Controller
             'title' => 'Transfer',
         );
         $data['user'] =
+            // SELECT * FROM profil
+            // where nomor_ponsel = 083192164289
             $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')])->row_array();
 
@@ -220,6 +232,8 @@ class User extends CI_Controller
                 $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
                 $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
                 $data['user'] =
+                    // SELECT * FROM profil
+                    // where nomor_ponsel = 083192164289
                     $this->db->get_where('profil', ['nomor_ponsel' =>
                     $this->session->userdata('nohp')])->row_array();
 
@@ -236,6 +250,9 @@ class User extends CI_Controller
                 ];
 
                 $data_hasil['saldo_kurang'] =
+                    // select if saldo.jumlah_saldo < max_pot_harga.cashback, "YES", "NO" as saldo_kurang saldo.jumlah_saldo 
+                    // from saldo join nota on nota.id_pengguna = profil.id_pengguna 
+                    // where profil.nomor_ponsel = nomor ponsel yang sedang login
                     $this->db->select("IF(saldo.jumlah_saldo < $data_transfer[nominal], 1, 0) as saldo_kurang, saldo.jumlah_saldo", FALSE)
                     ->from('saldo')
                     ->join('transfer', 'transfer.id_pengguna=profil.id_pengguna')
@@ -261,6 +278,8 @@ class User extends CI_Controller
 
                     $this->db->insert('notifikasi', $notif);
 
+                    // UPDATE saldo set jumlah_saldo = jumlah_saldo - transfer.nominal 
+                    // where profil.id_pengguna = id pengguna yang login
                     $data['user'] =
                         $this->db->set("jumlah_saldo", "jumlah_saldo - $data_transfer[nominal]", FALSE);
                     $this->db->get_where('profil', ['id_pengguna' =>
@@ -304,6 +323,10 @@ class User extends CI_Controller
                 $data = array(
                     'title' => 'TF ke rekening Bank',
                 );
+
+                // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+                // join jenis_user on jenis_user.jenis_ovo = profil. jenis_ovo
+                // where nomor_ponsel = 083192164289
                 $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
                 $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
                 $data['user'] =
@@ -320,6 +343,8 @@ class User extends CI_Controller
                     'nomor_ponsel_penerima' => $this->input->post('nomor_ponsel_penerima'),
                     'id_pengguna' => $this->input->post('id_pengguna')
                 ];
+                // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+                // where nomor_ponsel = 083192164289
                 $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
                 $this->db->get_where('profil', ['nomor_ponsel' =>
                 $this->session->userdata('nohp')], ['id_pengguna' => $this->session->userdata('id_pengguna')])->row_array();

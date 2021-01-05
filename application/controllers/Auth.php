@@ -97,6 +97,9 @@ class Auth extends CI_Controller
                 'is_active' => 1,
                 'date_created' => time()
             ];
+
+            // insert into profil values ('Fenni Kristiani', '083192164289', 'fenni@gmail.com','123456',
+            //  'default.jpg', '2', '1', '2021/05/01 17:50')
             $this->db->insert('profil', $dataprofil);
             $data_saldo = [
                 'id_pengguna' => $this->db->insert_id(),

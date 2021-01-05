@@ -12,7 +12,8 @@ class Merchant extends CI_Controller
 
     public function pln()
     {
-
+        // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+        // join jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo where nomor_ponsel = 083192164289
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] =
@@ -20,6 +21,7 @@ class Merchant extends CI_Controller
             $this->session->userdata('nohp')])->row_array();
 
         // query untuk mengambil data pengguna yang dimasukkan ke tabel nota.
+        // select * from nota join profil on profil.id_pengguna
         $this->db->join('profil', 'nota.id_pengguna = profil.id_pengguna', 'left');
         $data['total_tagihan'] =
             $this->db->get('nota')->row_array();
@@ -57,6 +59,9 @@ class Merchant extends CI_Controller
             ];
 
             // Cek saldo apakah mencukupi atau tidak
+            // select if saldo.jumlah_saldo < max_pot_harga.cashback ,"yes", "no" as saldo_kurang saldo.jumlah_saldo 
+            // from saldo join nota on nota.id_pengguna = profil.id_pengguna 
+            // where profil.nomor_ponsel = nomor ponsel yang sedang login
             $data_hasil['saldo_kurang'] =
                 $this->db->select("IF(saldo.jumlah_saldo < $data_listrik[nominal], 1, 0) as saldo_kurang, saldo.jumlah_saldo", FALSE)
                 ->from('saldo')
@@ -75,15 +80,20 @@ class Merchant extends CI_Controller
                     'nama_transaksi' => 'Pembayaran listrik PLN'
                 ];
                 //Insert ke table jenis_transaksi 
-
+                // insert into jenis_transaksi values ('', '2', 'Pembayaran listrik PLN');
                 $this->db->insert('jenis_transaksi', $data_transaksi);
                 $id_jenis_transaksi = $this->db->insert_id();
 
                 // insert ke table nota
+                // insert into nota values('', '1', '20000','20', '2000', 'berhasil' );
                 $this->db->insert('nota', $data_listrik);
 
                 // query untuk mengambil kolom biaya, nominal, kedua kolom ini dijumlahkan sebagai total
                 // tujuannya untuk dimasukkan ke field "total" di table total_tagihan.
+
+                // select biaya, nominal, (biaya + nominal) as total 
+                // join total_tagihan on nota.no_referensi = total_tagihan.no_referensi
+                // where nota.no_referensi = total_tagihan.no_referensi;
                 $this->db->select('biaya, nominal, (biaya + nominal) as total ', FALSE);
                 $this->db->join('total_tagihan', 'nota.no_referensi = total_tagihan.no_referensi', 'left');
                 $data =
@@ -114,6 +124,8 @@ class Merchant extends CI_Controller
 
     public function pulsa()
     {
+        // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+        // join jenis_user on jenis_user.jenis_ovo = profil.jenis_ovo where nomor_ponsel = 083192164289
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] =
@@ -121,6 +133,8 @@ class Merchant extends CI_Controller
             $this->session->userdata('nohp')])->row_array();
 
         // query untuk mengambil data pengguna yang dimasukkan ke tabel nota.
+        // query untuk mengambil data pengguna yang dimasukkan ke tabel nota.
+        // select * from nota join profil on profil.id_pengguna
         $this->db->join('profil', 'nota.id_pengguna = profil.id_pengguna', 'left');
         $data['total_tagihan'] =
             $this->db->get('nota')->row_array();
@@ -152,6 +166,9 @@ class Merchant extends CI_Controller
             ];
 
             // Cek saldo apakah mencukupi atau tidak
+            // select if saldo.jumlah_saldo < max_pot_harga.cashback, "yes", "no" as saldo_kurang saldo.jumlah_saldo 
+            // from saldo join nota on nota.id_pengguna = profil.id_pengguna 
+            // where profil.nomor_ponsel = nomor ponsel yang sedang
             $data_hasil['saldo_kurang'] =
                 $this->db->select("IF(saldo.jumlah_saldo < $data_pulsa[nominal], 1, 0) as saldo_kurang, saldo.jumlah_saldo", FALSE)
                 ->from('saldo')
@@ -179,6 +196,10 @@ class Merchant extends CI_Controller
 
                 // query untuk mengambil kolom biaya, nominal, kedua kolom ini dijumlahkan sebagai total
                 // tujuannya untuk dimasukkan ke field "total" di table total_tagihan.
+
+                // select biaya, nominal, (biaya + nominal) as total 
+                // join total_tagihan on nota.no_referensi = total_tagihan.no_referensi
+                // where nota.no_referensi = total_tagihan.no_referensi;
                 $this->db->select('biaya, nominal, (biaya + nominal) as total ', FALSE);
                 $this->db->join('total_tagihan', 'nota.no_referensi = total_tagihan.no_referensi', 'left');
                 $data =

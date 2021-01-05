@@ -69,7 +69,11 @@ class Deals extends CI_Controller
         $harga = $data['cashback']['max_pot_harga'];
         $point = $data['cashback']['point'];
 
-        // Jika saldo kurang
+        // query cek jika saldo kurang
+        // select if saldo.jumlah_saldo < max_pot_harga.cashback as saldo_kurang saldo.jumlah_saldo 
+        // from saldo join nota on nota.id_pengguna = profil.id_pengguna 
+        // where profil.nomor_ponsel = nomor ponsel yang sedang login
+
         $cek_saldo['saldo_kurang'] =
             $this->db->select("IF(saldo.jumlah_saldo < $harga, 1, 0) as saldo_kurang, saldo.jumlah_saldo", FALSE)
             ->from('saldo')
@@ -83,6 +87,8 @@ class Deals extends CI_Controller
             redirect('user');
         } else {
             $this->db->trans_begin();
+
+            // insert into
             $this->db->insert('trash_cashback', $data_cashback);
             $this->db->set("jumlah_saldo", "jumlah_saldo - $harga", FALSE);
             $this->db->set("point", "point + $point", FALSE);
@@ -104,11 +110,16 @@ class Deals extends CI_Controller
             'title' => 'Promo SOS Bisa di Nikmatin Dimana Aja',
         );
 
+        // select * from profil join saldo on saldo.id_pengguna = profil.id_pengguna
+        // join jenis_user on jenis_user.jenis_ovo = profil. jenis_ovo
+        // where nomor_ponsel = 083192164289
         $this->db->join('saldo', 'saldo.id_pengguna = profil.id_pengguna', 'left');
         $this->db->join('jenis_user', 'jenis_user.jenis_ovo = profil.jenis_ovo');
         $data['user'] =
             $this->db->get_where('profil', ['nomor_ponsel' =>
             $this->session->userdata('nohp')])->row_array();
+
+        // select * from voucher where id_voucher = 1
         $data['voucher'] =
             $this->db->get_where('voucher', ['id_voucher' => '1'])->row_array();
         $this->load->view('user/profil/headerprofil', $data);
